@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/dbConfig.js";
 import authRouter from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
-import PostsRouter from "./routes/post.routes.js";
+import postsRouter from "./routes/post.routes.js";
+import userRouter from "./routes/user.route.js";
 dotenv.config();
 
 const app = express();
@@ -15,7 +16,8 @@ app.use(cookieParser());
 
 //routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/posts", PostsRouter);
+app.use("/api/v1/posts", postsRouter);
+app.use("/api/v1/users", userRouter);
 
 app.listen(process.env.PORT, async () => {
   console.log(`Server is running on http://localhost:${process.env.PORT}`);
