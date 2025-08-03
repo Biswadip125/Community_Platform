@@ -3,31 +3,37 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_API_URL } from "../../utils/constant";
 import toast from "react-hot-toast";
+import { useUser } from "../../context/UserContext";
 
 const Login = () => {
-  const [user, setUser] = useState({
+  const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
   });
-
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setUser({ ...user, [name]: value });
+    setUserDetails({ ...userDetails, [name]: value });
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${BACKEND_API_URL}/auth/login`, user, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${BACKEND_API_URL}/auth/login`,
+        userDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success) {
+        setUser(res.data.user);
         navigate("/");
         toast.success(res.data.message);
       }
@@ -56,7 +62,7 @@ const Login = () => {
             id="email"
             name="email"
             required
-            value={user.email}
+            value={userDetails.email}
             className="px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your email"
             onChange={handleChange}
@@ -75,7 +81,7 @@ const Login = () => {
             id="password"
             name="password"
             required
-            value={user.password}
+            value={userDetails.password}
             className="px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your password"
             onChange={handleChange}

@@ -3,30 +3,37 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../utils/constant";
 import toast from "react-hot-toast";
+import { useUser } from "../../context/UserContext";
 const Signup = () => {
-  const [user, setUser] = useState({
+  const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",
     password: "",
   });
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setUser({ ...user, [name]: value });
+    setUserDetails({ ...userDetails, [name]: value });
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${BACKEND_API_URL}/auth/register`, user, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${BACKEND_API_URL}/auth/register`,
+        userDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success) {
+        setUser(res.data.user);
         navigate("/");
         toast.success(res.data.message);
       }
@@ -54,7 +61,7 @@ const Signup = () => {
             id="name"
             name="name"
             required
-            value={user.name}
+            value={userDetails.name}
             className="px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your name"
             onChange={(e) => handleChange(e)}
@@ -70,7 +77,7 @@ const Signup = () => {
             id="email"
             name="email"
             required
-            value={user.email}
+            value={userDetails.email}
             className="px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your email"
             onChange={(e) => handleChange(e)}
@@ -89,7 +96,7 @@ const Signup = () => {
             id="password"
             name="password"
             required
-            value={user.password}
+            value={userDetails.password}
             className="px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your password"
             onChange={(e) => handleChange(e)}
