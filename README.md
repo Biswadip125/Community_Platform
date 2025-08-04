@@ -24,7 +24,7 @@ A simple full-stack social platform where users can sign up, log in, create post
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/community-platform.git
+git clone https://github.com/Biswadip125/Community_Platform.git
 cd community-platform
 ```
 
@@ -44,19 +44,19 @@ npm install
 
 ### 3. Environment Variables
 
-Create `.env` files in both `backend` and `frontend`.
+Create `.env` file in `backend`
 
 #### Backend `.env`
 ```
-PORT=5000
+PORT=3000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 CLIENT_URL=https://your-frontend-url.com
 ```
 
-#### Frontend `.env`
+#### Frontend `utils/constant.js`
 ```
-VITE_BACKEND_API=https://your-backend-url.com/api/v1
+BACKEND_API_URl=https://your-backend-url.com/api/v1
 ```
 
 ### 4. Run the app
@@ -77,8 +77,8 @@ npm run dev
 
 | Role    | Email              | Password   |
 |---------|--------------------|------------|
-| Demo    | demo@example.com   | password123 |
-| Admin   | admin@example.com  | admin123    |
+| Demo    | biswa@gmail.com    | biswa@123 |
+
 
 > *Ensure you’ve added these users manually to the database or include a seed script.*
 
