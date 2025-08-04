@@ -1,1 +1,2 @@
-export const BACKEND_API_URL = "http://localhost:3000/api/v1";
+export const BACKEND_API_URL =
+  "https://community-platform-mern.onrender.com/api/v1";
