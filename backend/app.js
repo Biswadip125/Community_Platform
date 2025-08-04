@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://community-platform-mern.onrender.com",
+
     credentials: true,
   })
 );

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { BACKEND_API_URL } from "../../utils/constant";
 import Post from "../../components/Post";
+import { Loader2 } from "lucide-react";
 
 const ProfilePage = () => {
   const { user } = useUser();
@@ -59,9 +60,13 @@ const ProfilePage = () => {
           Your Posts ({userPosts.length})
         </h1>
         <div className="flex flex-col gap-4">
-          {userPosts.map((post) => (
-            <Post postContent={post} />
-          ))}
+          {userPosts.length > 0 ? (
+            userPosts.map((post) => <Post postContent={post} />)
+          ) : (
+            <div className="flex justify-center items-center h-40">
+              <Loader2 className="animate-spin text-blue-500 w-6 h-6" />
+            </div>
+          )}
         </div>
       </div>
     </div>
