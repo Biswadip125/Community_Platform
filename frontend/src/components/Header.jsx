@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Home, LogOut, User2 } from "lucide-react";
 import axios from "axios";
 import { BACKEND_API_URL } from "../utils/constant";
 import toast from "react-hot-toast";
+import { useUser } from "../context/UserContext";
 const Header = () => {
-  const navigate = useNavigate();
+  const { setUser } = useUser();
 
   const handleLogout = async () => {
     try {
@@ -16,7 +17,7 @@ const Header = () => {
       });
 
       if (res.data.success) {
-        navigate("/login");
+        setUser(null);
         toast.success(res.data.message);
       }
     } catch (err) {

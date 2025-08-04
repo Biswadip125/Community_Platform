@@ -1,5 +1,4 @@
 import { Dot } from "lucide-react";
-import React from "react";
 import { timeAgo } from "../utils/timeAgo";
 
 const Post = ({ postContent }) => {

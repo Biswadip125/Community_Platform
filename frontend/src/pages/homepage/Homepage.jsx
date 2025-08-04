@@ -4,7 +4,6 @@ import PostFeed from "../../components/PostFeed";
 import { BACKEND_API_URL } from "../../utils/constant";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Post from "../../components/Post";
 
 const Homepage = () => {
   const [posts, setPosts] = useState([]);

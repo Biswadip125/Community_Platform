@@ -109,10 +109,13 @@ export const login = async (req, res) => {
       .json({
         success: true,
         message: `Welcome back ${existedUser.name}`,
-        _id: existedUser._id,
-        name: existedUser.name,
-        email: existedUser.email,
-        bio: existedUser.bio,
+        user: {
+          _id: existedUser._id,
+          name: existedUser.name,
+          email: existedUser.email,
+          bio: existedUser.bio,
+          createdAt: existedUser.createdAt,
+        },
       });
   } catch (err) {
     console.log(err);
