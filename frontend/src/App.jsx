@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Signup from "./pages/signup/Signup";
 import Header from "./components/Header";
-import Login from "./pages/login/login";
+import Login from "./pages/login/Login";
 import Homepage from "./pages/homepage/Homepage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import { useUser } from "./context/UserContext";
